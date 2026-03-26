@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Home | Crysta Auto Care</title>
+    <link rel="icon" type="image/png" href="includes/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #fbbf24; transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .fade-in { animation: fadeIn 0.8s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .slide-up { animation: slideUp 0.6s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(251,191,36,0.1); }
+        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        @media (max-width: 640px) { .font-playfair { letter-spacing: -0.01em; } section { overflow-x: hidden; } .mobile-px { padding-left: 1rem; padding-right: 1rem; } nav img { height: 2.75rem; } }
+        @media (min-width: 641px) and (max-width: 768px) { nav img { height: 3rem; } }
+        select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1.25rem; }
+        .whatsapp-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: all 0.3s ease; animation: whatsappPulse 2s infinite; }
+        .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.6); }
+        @keyframes whatsappPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.6); } }
+        @media (max-width: 640px) { .whatsapp-btn { bottom: 1rem; right: 1rem; width: 50px; height: 50px; } }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <a href="index.html" class="flex items-center space-x-2 sm:space-x-3 group">
+                    <img src="includes/logo.png" alt="Crysta Auto Care" class="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]">
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-sm tracking-wider uppercase active hover:text-gray-300 transition-colors">Home</a>
+                    <a href="services.html" class="nav-link text-sm tracking-wider uppercase hover:text-gray-300 transition-colors">Services</a>
+                    <a href="booking.html" class="nav-link text-sm tracking-wider uppercase hover:text-gray-300 transition-colors">Booking</a>
+                    <a href="contact.html" class="nav-link text-sm tracking-wider uppercase hover:text-gray-300 transition-colors">Contact</a>
+                    <a href="booking.html" class="ml-4 px-6 py-2 bg-amber-400 text-black text-sm font-semibold tracking-wider uppercase hover:bg-amber-300 transition-all duration-300 rounded-sm">Book Now</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none p-2 -mr-2" aria-label="Toggle menu">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 border-t border-gray-800" style="backdrop-filter:blur(20px);">
+            <div class="px-6 py-6 space-y-1">
+                <a href="index.html" class="block text-base tracking-wider uppercase py-3 px-4 rounded-lg text-amber-400 bg-amber-400/10 transition-colors">Home</a>
+                <a href="services.html" class="block text-base tracking-wider uppercase py-3 px-4 rounded-lg text-white hover:bg-gray-900 transition-colors">Services</a>
+                <a href="booking.html" class="block text-base tracking-wider uppercase py-3 px-4 rounded-lg text-white hover:bg-gray-900 transition-colors">Booking</a>
+                <a href="contact.html" class="block text-base tracking-wider uppercase py-3 px-4 rounded-lg text-white hover:bg-gray-900 transition-colors">Contact</a>
+                <div class="pt-4">
+                    <a href="booking.html" class="block text-center py-3 px-6 bg-amber-400 text-black text-sm font-semibold tracking-wider uppercase hover:bg-amber-300 transition-colors rounded-lg">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="h-16 sm:h-20"></div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) { menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); } else { menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); }
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); }); });
+        window.addEventListener('scroll', function() { const navbar = document.getElementById('navbar'); if (window.scrollY > 50) { navbar.style.background = 'rgba(0,0,0,0.95)'; } else { navbar.style.background = 'rgba(255,255,255,0.05)'; } });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-20">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.03) 0%, transparent 50%);"></div>
+        <div class="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-gray-700 to-transparent opacity-20"></div>
+        <div class="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-gray-700 to-transparent opacity-20"></div>
+
+        <div class="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+            <p class="text-xs tracking-[0.3em] sm:tracking-[0.5em] text-amber-400/60 uppercase mb-6 sm:mb-8 fade-in">Premium Auto Detailing</p>
+            <h1 class="font-playfair text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6 leading-tight fade-in">
+                Precision Care.<br>
+                <span class="text-amber-400/80">Flawless Finish.</span>
+            </h1>
+            <p class="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-3 sm:mb-4 font-light fade-in">
+                We transform your vehicle with meticulous attention to detail. 
+                Every surface perfected, every inch restored to showroom glory.
+            </p>
+            <p class="text-amber-400/50 text-xs sm:text-sm tracking-wider mb-8 sm:mb-12 fade-in">Premium car detailing service in Okara — Starting from Rs. 800</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 fade-in">
+                <a href="booking.html" class="w-full sm:w-auto px-10 py-4 bg-amber-400 text-black font-semibold text-sm tracking-wider uppercase hover:bg-amber-300 transition-all duration-300 rounded-sm text-center">Book Your Detail</a>
+                <a href="services.html" class="w-full sm:w-auto px-10 py-4 border border-amber-400/40 text-amber-400 font-semibold text-sm tracking-wider uppercase hover:bg-amber-400 hover:text-black transition-all duration-300 rounded-sm text-center">Our Services</a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+            <span class="text-xs tracking-widest text-gray-500 uppercase mb-3">Scroll</span>
+            <div class="w-px h-12 bg-gradient-to-b from-gray-500 to-transparent animate-pulse"></div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 sm:py-20 border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                <div class="text-center animate-on-scroll">
+                    <p class="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair mb-2">500+</p>
+                    <p class="text-[10px] sm:text-xs tracking-widest text-gray-500 uppercase">Cars Detailed</p>
+                </div>
+                <div class="text-center animate-on-scroll">
+                    <p class="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair mb-2">4.9</p>
+                    <p class="text-[10px] sm:text-xs tracking-widest text-gray-500 uppercase">Customer Rating</p>
+                </div>
+                <div class="text-center animate-on-scroll">
+                    <p class="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair mb-2">3+</p>
+                    <p class="text-[10px] sm:text-xs tracking-widest text-gray-500 uppercase">Years Experience</p>
+                </div>
+                <div class="text-center animate-on-scroll">
+                    <p class="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair mb-2">100%</p>
+                    <p class="text-[10px] sm:text-xs tracking-widest text-gray-500 uppercase">Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="py-16 sm:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14 animate-on-scroll">
+                <p class="text-xs tracking-[0.3em] sm:tracking-[0.5em] text-amber-400/60 uppercase mb-4">Premium Car Detailing Service in Okara</p>
+                <h2 class="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Choose Your Package</h2>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">Affordable packages crafted for every car. Starting prices that fit your budget.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+                <div class="group glass rounded-2xl p-6 sm:p-8 border border-gray-800 hover:border-amber-400/30 transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(251,191,36,0.08)] flex flex-col text-center animate-on-scroll">
+                    <div class="text-3xl mb-4">🥉</div>
+                    <h3 class="text-xl font-bold font-playfair mb-2">Essential Care</h3>
+                    <p class="text-gray-400 text-sm mb-5 leading-relaxed">Signature exterior wash + light interior touch-up. Quick & affordable.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-800">
+                        <p class="text-xs text-gray-500 uppercase tracking-wider">Starting from</p>
+                        <p class="text-3xl font-bold font-playfair text-white mt-1">Rs. 800</p>
+                        <a href="booking.html?service=Essential+Care" class="block w-full mt-4 py-3 text-sm font-semibold tracking-wider uppercase border border-amber-400/40 text-amber-400 rounded-lg hover:bg-amber-400 hover:text-black transition-all duration-300">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-2xl p-6 sm:p-8 border-2 border-amber-400/60 bg-gradient-to-b from-amber-400/5 via-black to-black transition-all duration-500 hover:scale-[1.05] hover:shadow-[0_0_60px_rgba(251,191,36,0.15)] flex flex-col text-center animate-on-scroll md:-mt-3 md:mb-[-0.75rem]" style="backdrop-filter:blur(10px);">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                        <span class="inline-flex items-center space-x-1 bg-amber-400 text-black text-[10px] font-bold tracking-wider uppercase px-4 py-1 rounded-full shadow-lg shadow-amber-400/20">
+                            <span>⭐</span><span>Most Popular</span>
+                        </span>
+                    </div>
+                    <div class="text-3xl mb-4 mt-2">🥈</div>
+                    <h3 class="text-xl font-bold font-playfair mb-2">Premium Care</h3>
+                    <p class="text-gray-400 text-sm mb-5 leading-relaxed">Interior refresh + exterior wash & wax. Deep cleaning for a better finish.</p>
+                    <div class="mt-auto pt-4 border-t border-amber-400/20">
+                        <p class="text-xs text-amber-400/70 uppercase tracking-wider">Starting from</p>
+                        <p class="text-3xl font-bold font-playfair text-amber-400 mt-1">Rs. 2,000</p>
+                        <a href="booking.html?service=Premium+Care" class="block w-full mt-4 py-3 text-sm font-bold tracking-wider uppercase bg-amber-400 text-black rounded-lg hover:bg-amber-300 transition-all duration-300 shadow-lg shadow-amber-400/10">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="group glass rounded-2xl p-6 sm:p-8 border border-gray-800 hover:border-amber-400/30 transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_0_40px_rgba(251,191,36,0.08)] flex flex-col text-center animate-on-scroll">
+                    <div class="text-3xl mb-4">👑</div>
+                    <h3 class="text-xl font-bold font-playfair mb-2">Ultimate Royal</h3>
+                    <p class="text-gray-400 text-sm mb-5 leading-relaxed">Full interior + exterior, polish, wax — showroom finish & complete detailing.</p>
+                    <div class="mt-auto pt-4 border-t border-gray-800">
+                        <p class="text-xs text-gray-500 uppercase tracking-wider">Starting from</p>
+                        <p class="text-3xl font-bold font-playfair text-white mt-1">Rs. 3,000</p>
+                        <a href="booking.html?service=Ultimate+Royal" class="block w-full mt-4 py-3 text-sm font-semibold tracking-wider uppercase border border-amber-400/40 text-amber-400 rounded-lg hover:bg-amber-400 hover:text-black transition-all duration-300">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ceramic + Combo -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10">
+                <div class="glass rounded-2xl p-5 sm:p-8 border border-gray-800 hover:border-amber-400/20 transition-all duration-300 animate-on-scroll">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <div class="flex items-center gap-4 sm:gap-5 flex-grow min-w-0">
+                            <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-amber-400/20 to-amber-400/5 rounded-full flex items-center justify-center border border-amber-400/20">
+                                <span class="text-xl sm:text-2xl">✨</span>
+                            </div>
+                            <div class="min-w-0">
+                                <h4 class="font-bold mb-0.5 text-sm sm:text-base">Ceramic Coating</h4>
+                                <p class="text-gray-400 text-xs sm:text-sm">Premium 9H protection — from <span class="text-amber-400 font-semibold">Rs. 8,000</span></p>
+                            </div>
+                        </div>
+                        <a href="services.html#ceramic" class="flex-shrink-0 block text-center sm:inline-block bg-amber-400/10 sm:bg-transparent text-amber-400 hover:bg-amber-400 hover:text-black text-sm font-semibold py-2.5 sm:py-0 rounded-lg sm:rounded-none transition-all">View Details →</a>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-2xl p-5 sm:p-8 border border-amber-400/30 bg-gradient-to-r from-amber-400/5 via-amber-400/10 to-amber-400/5 animate-on-scroll" style="backdrop-filter:blur(10px);">
+                    <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <div class="flex items-center gap-4 sm:gap-5 flex-grow min-w-0">
+                            <div class="flex-shrink-0 text-xl sm:text-2xl">🔥</div>
+                            <div class="min-w-0">
+                                <h4 class="font-bold mb-0.5 text-sm sm:text-base">Interior + Exterior = Save Rs. 500</h4>
+                                <p class="text-gray-400 text-xs sm:text-sm">Book both together for the best value.</p>
+                            </div>
+                        </div>
+                        <a href="booking.html?service=Premium+Care" class="flex-shrink-0 block text-center bg-amber-400 text-black text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-amber-300 transition-all uppercase tracking-wider">Claim Deal</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10 animate-on-scroll">
+                <a href="services.html" class="inline-block px-10 py-4 border border-amber-400/40 text-amber-400 text-sm tracking-wider uppercase hover:bg-amber-400 hover:text-black transition-all duration-300 rounded-lg">View All Packages & Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-24 bg-gradient-to-b from-gray-900/50 to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-on-scroll">
+                    <p class="text-xs tracking-[0.5em] text-amber-400/60 uppercase mb-4">Why Crysta</p>
+                    <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-8">Craftsmanship<br>Meets Technology</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center border border-gray-700 rounded-full mt-1"><span class="text-xs font-bold">01</span></div>
+                            <div><h4 class="font-semibold mb-1">Premium Products</h4><p class="text-gray-400 text-sm">We use only the finest imported detailing products and ceramic coatings.</p></div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center border border-gray-700 rounded-full mt-1"><span class="text-xs font-bold">02</span></div>
+                            <div><h4 class="font-semibold mb-1">Expert Technicians</h4><p class="text-gray-400 text-sm">Our trained professionals deliver consistent, flawless results every time.</p></div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center border border-gray-700 rounded-full mt-1"><span class="text-xs font-bold">03</span></div>
+                            <div><h4 class="font-semibold mb-1">Satisfaction Guaranteed</h4><p class="text-gray-400 text-sm">We're not done until you're completely satisfied with the results.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-on-scroll">
+                    <div class="relative">
+                        <div class="glass rounded-2xl p-12 text-center">
+                            <img src="includes/logo.png" alt="Crysta Auto Care" class="h-24 sm:h-28 w-auto mx-auto mb-6 object-contain drop-shadow-[0_0_12px_rgba(251,191,36,0.3)]">
+                            <p class="text-gray-400 italic">Where every detail matters</p>
+                            <div class="mt-8 grid grid-cols-2 gap-4 text-center">
+                                <div class="p-4 border border-gray-800 rounded-lg"><p class="text-2xl font-bold">24/7</p><p class="text-xs text-gray-500 uppercase">Booking</p></div>
+                                <div class="p-4 border border-gray-800 rounded-lg"><p class="text-2xl font-bold">100%</p><p class="text-xs text-gray-500 uppercase">Quality</p></div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 border border-gray-800 rounded-lg"></div>
+                        <div class="absolute -bottom-4 -left-4 w-24 h-24 border border-gray-800 rounded-lg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 sm:py-24">
+        <div class="max-w-4xl mx-auto px-4 text-center animate-on-scroll">
+            <h2 class="font-playfair text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">Ready to Transform<br>Your Vehicle?</h2>
+            <p class="text-gray-400 text-base sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto">Book your appointment today and experience the Crysta difference. Professional detailing that speaks for itself.</p>
+            <a href="booking.html" class="inline-block px-10 sm:px-12 py-4 sm:py-5 bg-amber-400 text-black font-semibold text-sm tracking-wider uppercase hover:bg-amber-300 transition-all duration-300 rounded-sm">Schedule Your Appointment</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="includes/footer.png" alt="Crysta Auto Care" class="h-14 sm:h-16 w-auto object-contain drop-shadow-[0_0_8px_rgba(251,191,36,0.2)]">
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">Precision Care. Flawless Finish. We bring your vehicle back to life with our premium detailing services. Every detail matters, every surface perfected.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.youtube.com" target="_blank" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-amber-400 hover:text-black hover:border-amber-400 transition-all duration-300" title="YouTube">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-amber-400 hover:text-black hover:border-amber-400 transition-all duration-300" title="Instagram">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center hover:bg-amber-400 hover:text-black hover:border-amber-400 transition-all duration-300" title="Facebook">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold tracking-wider uppercase mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 text-sm hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 text-sm hover:text-white transition-colors">Services</a></li>
+                        <li><a href="booking.html" class="text-gray-400 text-sm hover:text-white transition-colors">Book Now</a></li>
+                        <li><a href="contact.html" class="text-gray-400 text-sm hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold tracking-wider uppercase mb-6">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span class="text-gray-400 text-sm">Okara, Pakistan</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <span class="text-gray-400 text-sm">0300-0279782</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span class="text-gray-400 text-sm">info@crystaautocare.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 sm:mt-12 pt-6 sm:pt-8 flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left">
+                <p class="text-gray-500 text-xs tracking-wider">&copy; 2026 Crysta Auto Care. All rights reserved.</p>
+                <p class="text-gray-600 text-xs tracking-wider">Precision Care. Flawless Finish.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/923000279782?text=Hi%2C%20I%27m%20interested%20in%20your%20car%20detailing%20services" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <button id="scroll-top" class="fixed bottom-24 right-6 sm:bottom-8 sm:right-24 w-11 h-11 bg-amber-400 text-black rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-amber-300 flex items-center justify-center z-50">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => { if (window.scrollY > 300) { scrollTopBtn.classList.remove('opacity-0', 'invisible'); scrollTopBtn.classList.add('opacity-100', 'visible'); } else { scrollTopBtn.classList.add('opacity-0', 'invisible'); scrollTopBtn.classList.remove('opacity-100', 'visible'); } });
+        scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); entry.target.style.opacity = '1'; } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => { el.style.opacity = '0'; observer.observe(el); });
+    </script>
+</body>
+</html>
